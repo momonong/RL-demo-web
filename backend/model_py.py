@@ -27,7 +27,6 @@ def plot_cruve(stress, strain):
     plt.xlabel("Strain", fontsize=20, labelpad = 5)
     plt.ylabel("Stress", fontsize=20, labelpad = 5)
     plt.legend(loc = "best", fontsize=12)
-    plt.savefig('static/images/Prediction_Stress_Strain_Curve.png', dpi=200, bbox_inches ="tight")
 
 
 materials = ['Angle of weaving', 'Width of Yarn', 'Height of Yarn', 'Space', 

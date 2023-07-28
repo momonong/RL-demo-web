@@ -4,8 +4,10 @@ from pydantic import BaseModel
 from fastapi.responses import StreamingResponse
 from PIL import Image
 from io import BytesIO
+import numpy as np
+from typing import List, Optional
 
-from model1 import predict_materials
+from backend.model_py import predict_materials
 
 app = FastAPI()
 
@@ -35,7 +37,7 @@ class Model1Request(BaseModel):
     fibre_v1: float
     fibre_v2: float
     fibre_v3: float
-    selected_cells: list
+    selected_cells: List[str]
 
 @app.post('/model1')
 async def model1(request: Model1Request):

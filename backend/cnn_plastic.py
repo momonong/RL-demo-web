@@ -14,7 +14,7 @@ def predict(x_img, x):
 
     # 載入模型
     #model = load_model(model_path)
-    model = load_model('backend/model1/CNN_plastic.h5')
+    model = load_model('CNN_plastic/CNN_plastic.h5')
 
     prediction = model.predict([x_img, x])
     return prediction
@@ -48,7 +48,7 @@ default = [90, 0.9, 0.3, 1.8,
 
 
 # 讀取data，取得fit函數
-train_df = pd.read_csv('backend/model1/plastic_data.csv')
+train_df = pd.read_csv('backend/CNN_plastic/plastic_data.csv')
 
 x_train_data = train_df.values[:,25:46]
 x_train_data = np.array(x_train_data)

@@ -7,7 +7,7 @@ from io import BytesIO
 import numpy as np
 from typing import List, Optional
 
-from backend.model_py import predict_materials
+from cnn_plastic import predict_materials
 
 app = FastAPI()
 

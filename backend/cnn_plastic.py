@@ -1,10 +1,11 @@
 import numpy as np
 import pandas as pd
-import urllib.request
 import os
 import matplotlib.pyplot as plt
 from tensorflow.keras.models import load_model
 from sklearn import preprocessing
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 def predict(x_img, x):
     # 下載模型到本地

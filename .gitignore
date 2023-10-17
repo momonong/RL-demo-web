@@ -1,3 +1,4 @@
 *.h5
 *.csv
 __pycache__/
+models_data/

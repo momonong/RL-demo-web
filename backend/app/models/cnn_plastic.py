@@ -1,8 +1,10 @@
+from io import BytesIO
 import numpy as np
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
 from tensorflow.keras.models import load_model
+from matplotlib.font_manager import FontProperties
 from sklearn import preprocessing
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
@@ -15,19 +17,35 @@ def predict(x_img, x):
 
     # 載入模型
     #model = load_model(model_path)
-    model = load_model('CNN_plastic/CNN_plastic.h5')
+    model = load_model('app/models_data/CNN_plastic.h5')
 
     prediction = model.predict([x_img, x])
     return prediction
 
+# 在外部定義追踪器和顏色列表
+plot_count = 0
+colors = ['#FF8C00', '#8B0000', '#4682B4', '#2E8B57', '#DAA520', '#8A2BE2']  # 你可以加入更多顏色
+
 def plot_cruve(stress, strain):
-    plt.plot(strain[0], stress[0], label=f'Prediction', alpha=0.7)
+    global plot_count
+    color = colors[plot_count % len(colors)]  # 循環使用顏色列表
+    label = f'Prediction {plot_count + 1}'
+    
+    plt.plot(strain[0], stress[0], label=label, alpha=0.7, color=color)
     plt.title("Stress Strain Curve", fontsize=20, x=0.5, y=1.03)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
-    plt.xlabel("Strain", fontsize=20, labelpad = 5)
-    plt.ylabel("Stress", fontsize=20, labelpad = 5)
-    plt.legend(loc = "best", fontsize=12)
+    plt.xlabel("Strain", fontsize=18, labelpad=5)
+    plt.ylabel("Stress", fontsize=18, labelpad=5)
+    
+    # 設定圖標文字大小
+    fontP = FontProperties()
+    fontP.set_size(10)
+    plt.legend(loc="best", fontsize=12, prop=fontP)
+    
+    plt.tight_layout()
+    
+    plot_count += 1
 
 
 materials = ['Angle of weaving', 'Width of Yarn', 'Height of Yarn', 'Space', 
@@ -49,7 +67,7 @@ default = [90, 0.9, 0.3, 1.8,
 
 
 # 讀取data，取得fit函數
-train_df = pd.read_csv('backend/CNN_plastic/plastic_data.csv')
+train_df = pd.read_csv('app/models_data/plastic_data.csv')
 
 x_train_data = train_df.values[:,25:46]
 x_train_data = np.array(x_train_data)
@@ -88,8 +106,11 @@ def predict_materials(img_data, material_var):
         i += 1
     
     img_result = plot_cruve(stress_pred, strain_pred)
-    return img_result
+    # return img_result
+    buffer = BytesIO()
+    plt.savefig(buffer, format="png")
+    buffer.seek(0)
+    return buffer.getvalue()
 
 material_var = default
-data = np.zeros((1, len(materials)))
 img_data = np.ones((1, 25))

@@ -10,6 +10,7 @@ import os
 
 from app.models.cnn_plastic import predict_materials
 from app.utils.utils import CNNPlasticRequest
+from app.models.ddpg_ice import generate_gif
 
 app = FastAPI()
 
@@ -17,15 +18,12 @@ app = FastAPI()
 def read_root():
     return {"Hello": "World"}
 
-# U-Net DDPG
+# U-Net 
+# DDPG
 @app.post('/model_ddpg_ice_crystal')
-def model_ddpg_ice_crystal(target_ratio: float):
-    result = target_ratio + 1
-    file_path = "path_to_your_gif_file.gif"
-    if os.path.exists(file_path):
-        return FileResponse(file_path, media_type="image/gif")
-    else:
-        return {"error": "File not found"}
+def model_ddpg_ice_crystal(request_ratio: float): # 0.3~0.7
+    gif = generate_gif(request_ratio)
+    return {"test": f"this is a test of input {gif}"}
     
 # CNN 
 # plastic
@@ -51,6 +49,17 @@ def model_cnn_plastic(request: CNNPlasticRequest):
     # response with image
     return StreamingResponse(buffer, media_type="image/jpeg")
 
+# COMP
+# Composites design
+@app.post('/model_composites_disgn')
+def model_composites_disgn():
+        return {"error": "File not found"}
+
+# HRRL
+# comp2field
+@app.post('/model_composites_disgn')
+def model_composites_disgn():
+        return {"error": "File not found"}
 
 # This is a test of picture turn into grey
 @app.post('/ai-art-portrait')

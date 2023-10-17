@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
-from tensorflow.keras.models import load_model
+from tensorflow.keras.models import load_model  # type: ignore
 from matplotlib.font_manager import FontProperties
 from sklearn import preprocessing
 

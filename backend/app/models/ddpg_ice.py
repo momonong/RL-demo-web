@@ -442,14 +442,14 @@ def policy( state_input, current_episode):
     return np.squeeze(legal_action), sampled_actions
 
 def get_size_for_RL():
-    X_train_img = np.load('/home/jonny/Conan/ice_former_1024/data/X_train_img_15.npy')
+    X_train_img = np.load('app/models_data/X_train_img_15.npy')
     X_train_img = np.concatenate((X_train_img, 
-                                np.load('/home/jonny/Conan/ice_former_1024/data/X_train_img_16.npy')
+                                np.load('app/models_data/X_train_img_16.npy')
                                 ))
 
-    X_train_type = np.load('/home/jonny/Conan/ice_former_1024/data/X_train_type_15.npy')
+    X_train_type = np.load('app/models_data/X_train_type_15.npy')
     X_train_type = np.concatenate((X_train_type, 
-                                np.load('/home/jonny/Conan/ice_former_1024/data/X_train_type_16.npy')))
+                                np.load('app/models_data/X_train_type_16.npy')))
     period = 44
     X_train_img_r = X_train_img.reshape(int(X_train_type.shape[0]/period),period, 128,128,1)
     X_train_type_r = X_train_type.reshape(int(X_train_type.shape[0]/period),period,1)
@@ -469,7 +469,7 @@ def env_reset(index):
 
 image_test, type_data = env_reset(-1)
 
-def generate_gif(request_target_porosity = np.random.uniform(0.3,0.7)):
+def generate_gif(request_target_porosity: float):
     current_time = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     # To store average reward history of last few episodes
     ep_reward_list = []
@@ -575,8 +575,7 @@ def generate_gif(request_target_porosity = np.random.uniform(0.3,0.7)):
     imageio.mimsave('Test.gif', gif_images, fps=10)
     print("SAVED GIF!!!!!!")
     cv2.destroyAllWindows()
+    return gif_images
+generate_gif(0.5)
     # Plotting graph
     # Episodes versus Avg. Rewards
-
-def generate_gif(input):
-    return input + 1

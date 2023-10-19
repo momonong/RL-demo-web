@@ -6,6 +6,7 @@ from io import BytesIO
 from enum import Enum
 import numpy as np
 import pandas as pd
+import imageio
 import os
 
 from app.models.cnn_plastic import predict_materials
@@ -21,10 +22,17 @@ def read_root():
 # U-Net 
 # DDPG
 @app.post('/model_ddpg_ice_crystal')
-def model_ddpg_ice_crystal(request_ratio: float): # 0.3~0.7
-    gif = generate_gif(request_ratio)
-    return {"test": f"this is a test of input {gif}"}
-    
+def model_ddpg_ice_crystal(request_ratio: float = np.random.uniform(0.3,0.7)): # 0.3~0.7
+    # gif = generate_gif(request_ratio)
+    # return {"test": f"this is a test of input {gif}"}
+    gif_images = generate_gif(request_ratio)
+    buffer = BytesIO()
+    imageio.mimsave(buffer, gif_images, format='GIF', fps=10)
+    buffer.seek(0)
+
+    # 使用 StreamingResponse 回傳 GIF 檔案
+    return StreamingResponse(buffer, media_type="image/gif")
+
 # CNN 
 # plastic
 @app.post('/model_cnn_plastic')

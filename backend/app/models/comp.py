@@ -10,13 +10,12 @@ import random
 from operator import itemgetter
 import numpy as np
 import gym
-import matlab.engine
+import matlab.engine # type: ignore
 from IPython import display
 import os
 import argparse
 import cv2
 from IPython.display import clear_output
-
 
 # ### Declare env as the environment:mapHR-v1
 

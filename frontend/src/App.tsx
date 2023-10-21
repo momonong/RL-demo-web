@@ -6,6 +6,23 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
+  const calculate  = async () => {
+    // const params = new URLSearchParams({operator: 'sub', a: '5', b: '4'})
+    // const response = await fetch(`http://localhost:8000/math?${params.toString()}`)
+    const response = await fetch(`http://localhost:8000/math`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({operator: 'mul', a: 5, b: 2}),
+    })
+
+    const {result} = await response.json()
+    console.log(result)
+  }
+
+  calculate()
+
   return (
     <>
       <div>
@@ -16,7 +33,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>hello frontend</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}

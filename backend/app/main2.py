@@ -1,7 +1,12 @@
-from fastapi import FastAPI, HTTPException
+from io import BytesIO
+from typing import Annotated
+from fastapi import FastAPI, File, HTTPException
 from enum import Enum
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from PIL import Image
+
 
 app = FastAPI()
 
@@ -65,3 +70,18 @@ def calculate_get(operator: OperatorEnum, a: str, b: str):
             return {'result': a/b}
         case _:
             raise HTTPException(status_code=400, detail='Invalid operator')
+        
+# This is a test of picture turn into grey
+@app.post('/ai-art-portrait')
+def ai_art_portrait(file: Annotated[bytes, File()]):
+    image = Image.open(BytesIO(file))
+    image = CycleGAN(image)
+    buffer = BytesIO()
+    image.save(buffer, 'jpeg')
+    buffer.seek(0)
+    return StreamingResponse(buffer, media_type='image/jpeg')
+
+def CycleGAN(image: Image):
+    image = image.convert('RGB')
+    image = image.convert('L')
+    return image

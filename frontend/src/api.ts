@@ -31,3 +31,41 @@ export const postAiArtPortrait = async (file: string | Blob) => {
     return URL.createObjectURL(blob)
     console.log(response)
 }
+
+export const postSmartRVE = async (selectedCells: number[], otherParameters: any) => {
+  // 創建一個物件來存儲所有參數
+  const requestBody = {
+    ...otherParameters,
+    selected_cells: selectedCells
+  };
+
+  const response = await fetch(`http://127.0.0.1:8000/model_smart_rve`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestBody),
+  });
+
+  if (!response.ok) {
+      throw new Error(`API call failed with status ${response.status}`);
+  }
+
+  const blob = await response.blob();
+  return URL.createObjectURL(blob);  // 返回圖片的URL
+}
+
+// api.ts
+export const clearPlot = async () => {
+  const response = await fetch(`http://127.0.0.1:8000/clear_plot`, {
+      method: 'POST',
+  });
+
+  if (!response.ok) {
+      throw new Error(`API call failed with status ${response.status}`);
+  }
+
+  return response.json();
+}
+
+

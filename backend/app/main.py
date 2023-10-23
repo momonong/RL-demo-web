@@ -1,5 +1,6 @@
 from fastapi import FastAPI, UploadFile, HTTPException, File
 from fastapi.responses import JSONResponse, StreamingResponse, FileResponse
+from fastapi.middleware.cors import CORSMiddleware
 from typing import Any, Annotated, List, Optional
 from PIL import Image
 from io import BytesIO
@@ -9,11 +10,20 @@ import pandas as pd
 import imageio
 import os
 
-from app.models.cnn_plastic import predict_materials
+from app.models.cnn_plastic import predict_materials, clear_plt
 from app.utils.utils import CNNPlasticRequest
 from app.models.ddpg_ice import generate_gif
 
 app = FastAPI()
+
+# Set up CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Allow this origin
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 @app.get("/")
 def read_root():
@@ -35,8 +45,8 @@ def model_ddpg_ice_crystal(request_ratio: float = np.random.uniform(0.3,0.7)): #
 
 # CNN 
 # plastic
-@app.post('/model_cnn_plastic')
-def model_cnn_plastic(request: CNNPlasticRequest):
+@app.post('/model_smart_rve')
+def model_smart_rve(request: CNNPlasticRequest):
     # Extract values from the request model using dict() method
     material_var = list(request.dict().values())[:-1]  # Exclude 'selected_cells' from the list
     # 獲取選定的格子資料
@@ -56,6 +66,12 @@ def model_cnn_plastic(request: CNNPlasticRequest):
     buffer.seek(0)
     # response with image
     return StreamingResponse(buffer, media_type="image/jpeg")
+
+@app.post('/clear_plot')
+def clear_plot():
+    clear_plt()
+    return {"message": "Plot cleared successfully"}
+
 
 # COMP
 # Composites design

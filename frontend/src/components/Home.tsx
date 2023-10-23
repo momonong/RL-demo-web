@@ -1,9 +1,5 @@
 import React from 'react';
 
-export const SmartRVE: React.FC = () => {
-  return <h1>Model 1: Smart RVE</h1>;
-}
-
 export const DDPG: React.FC = () => {
   return <h1>Model 2: DDPG</h1>;
 }

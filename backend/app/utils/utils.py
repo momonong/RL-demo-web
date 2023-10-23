@@ -2,25 +2,25 @@ from pydantic import BaseModel
 from typing import List
 
 class CNNPlasticRequest(BaseModel):
-    angular_of_weaving: float = 90
-    width_of_yarn: float = 0.9
-    height_of_yarn: float = 0.3
-    space: float = 1.8
-    epoxy_E: float = 20000
-    epoxy_v: float = 0.4
-    epoxy_yield_strength_1: float = 3
-    epoxy_plastic_strain_1: float = 0
-    epoxy_yield_strength_2: float = 600
-    epoxy_plastic_strain_2: float = 0.3
-    fibre_density: float = 2550
-    fibre_linear_density: float = 0.00056
-    fibre_E1: float = 72000
-    fibre_E2: float = 72000
-    fibre_E3: float = 72000
-    fibre_G12: float = 30000
-    fibre_G23: float = 30000
-    fibre_G13: float = 30000
-    fibre_v1: float = 0.2
-    fibre_v2: float = 0.2
-    fibre_v3: float = 0.2
-    selected_cells: List[int] = []
+    angular_of_weaving: float
+    width_of_yarn: float
+    height_of_yarn: float
+    space: float 
+    epoxy_E: float 
+    epoxy_v: float 
+    epoxy_yield_strength_1: float 
+    epoxy_plastic_strain_1: float 
+    epoxy_yield_strength_2: float 
+    epoxy_plastic_strain_2: float 
+    fibre_density: float 
+    fibre_linear_density: float 
+    fibre_E1: float 
+    fibre_E2: float 
+    fibre_E3: float 
+    fibre_G12: float 
+    fibre_G23: float 
+    fibre_G13: float 
+    fibre_v1: float 
+    fibre_v2: float 
+    fibre_v3: float
+    selected_cells: List[int] 

@@ -47,7 +47,7 @@ function Navbar() {
             >
             LAiMM
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
                 <Button
                 component={Link}
@@ -67,6 +67,16 @@ function Navbar() {
                     to={`/${page.replace(' ', '-').toLowerCase()}`} // 轉換 "Smart RVE" 為 "/smart-rve"
                     key={page}
                     sx={{ my: 2, color: 'white', display: 'block', textTransform: 'none'}}
+                >
+                    {page}
+                </Button>
+                ))}
+            </Box> */}
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                {pages.map((page) => (
+                <Button
+                    key={page}
+                    sx={{ my: 2, color: 'white', display: 'block' }}
                 >
                     {page}
                 </Button>

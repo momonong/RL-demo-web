@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+
+/* 隱藏 Chrome、Safari 和 Opera 的上下箭頭 */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* 隱藏 Firefox 的上下箭頭 */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

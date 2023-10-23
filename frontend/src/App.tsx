@@ -1,17 +1,17 @@
 import './App.css'
 import Navbar from './components/Navbar'
-import { OperatorEnum } from './api'
-import { Unstable_Grid2 as Grid, Container, Paper, Stack } from '@mui/material'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { SmartRVE, DDPG, COMP, Comp2Field, Home } from './components/Home'
+// import { OperatorEnum } from './api'
+// import { Unstable_Grid2 as Grid, Container, Paper, Stack } from '@mui/material'
+// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import { DDPG, COMP, Comp2Field, Home } from './components/Home'
+import SmartRVE from './components/SmartRVE';
 
 
 function App() {
   return (
     <>
       <Navbar />
-      <Router>
-        <div style={{ paddingTop: '64px' }}>
+      {/* <Router>
           <Navbar />
           <Routes>
             <Route path="/smart-rve" element={<SmartRVE />} />
@@ -20,8 +20,8 @@ function App() {
             <Route path="/comp2field" element={<Comp2Field />} />
             <Route path="/" element={<Home />} />
           </Routes>
-        </div>
-      </Router>
+      </Router> */}
+      <SmartRVE />
     </>
   );
 }

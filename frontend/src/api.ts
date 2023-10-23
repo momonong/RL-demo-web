@@ -1,3 +1,10 @@
+export enum OperatorEnum {
+    ADD = 'add',
+    SUBTRACT = 'sub',
+    MULTIPLY = 'mul',
+    DIVIDE = 'div',
+}
+
 export const calculate  = async (operator: string, a: number, b: number ) => {
     // const params = new URLSearchParams({operator: 'sub', a: '5', b: '4'})
     // const response = await fetch(`http://localhost:8000/math?${params.toString()}`)

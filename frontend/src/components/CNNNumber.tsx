@@ -4,7 +4,9 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
 
-function CNNNumberInput({ onParametersChange }: Props) {
+// @ts-ignore
+function CNNNumberInput({ onParametersChange }: Props) { 
+    // @ts-ignore
     const [values, setValues] = useState<ValuesType>({
         angular_of_weaving: 90,
         width_of_yarn: 0.9,

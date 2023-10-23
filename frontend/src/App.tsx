@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 // import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // import { DDPG, COMP, Comp2Field, Home } from './components/Home'
 import SmartRVE from './components/SmartRVE';
+import  DDPG from './components/DDPG';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           </Routes>
       </Router> */}
       <SmartRVE />
+      {/* <DDPG /> */}
     </>
   );
 }

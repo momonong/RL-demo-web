@@ -5,7 +5,6 @@ import CNNNumberInput from "./CNNNumber";
 import { clearPlot, postSmartRVE } from "../api";  // 請確保這是正確的導入路徑
 import Button from '@mui/material/Button';
 
-
 export default function SmartRVE() {
     const [src, setSrc] = useState<string>('');
     const [selectedCells, setSelectedCells] = useState<number[]>([]);
@@ -31,7 +30,6 @@ export default function SmartRVE() {
         }
     }
     
-
     return (
         <Grid container spacing={3} marginTop={'100px'}>
             <Grid item xs={12} md={3}>

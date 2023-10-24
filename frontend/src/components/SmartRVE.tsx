@@ -5,7 +5,7 @@ import CNNNumberInput from "./CNNNumber";
 import { clearPlot, postSmartRVE } from "../api";  // 請確保這是正確的導入路徑
 import Button from '@mui/material/Button';
 
-export default function SmartRVE() {
+function SmartRVE() {
     const [src, setSrc] = useState<string>('');
     const [selectedCells, setSelectedCells] = useState<number[]>([]);
     const [otherParameters, setOtherParameters] = useState<any>({});
@@ -52,3 +52,4 @@ export default function SmartRVE() {
     );    
 }
 
+export default SmartRVE;

@@ -32,6 +32,8 @@ export const postAiArtPortrait = async (file: string | Blob) => {
     console.log(response)
 }
 
+// CNN Plastic
+// Smart RVE
 export const postSmartRVE = async (selectedCells: number[], otherParameters: any) => {
   // 創建一個物件來存儲所有參數
   const requestBody = {
@@ -55,7 +57,6 @@ export const postSmartRVE = async (selectedCells: number[], otherParameters: any
   return URL.createObjectURL(blob);  // 返回圖片的URL
 }
 
-// api.ts
 export const clearPlot = async () => {
   const response = await fetch(`http://127.0.0.1:8000/clear_plot`, {
       method: 'POST',
@@ -68,4 +69,27 @@ export const clearPlot = async () => {
   return response.json();
 }
 
+// DDPG
+// Ice Crystal 
+export const postDDPG = async (requestRatio: number): Promise<string> => {
+  // 組裝請求體
+  const requestBody = {
+      request_ratio: requestRatio
+  };
 
+  const response = await fetch(`http://127.0.0.1:8000/model_ddpg_ice_crystal`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'image/gif'
+      },
+      body: JSON.stringify(requestBody)
+  });
+
+  if (!response.ok) {
+      throw new Error(`API call failed with status ${response.status}`);
+  }
+
+  const blob = await response.blob();
+  return URL.createObjectURL(blob);  // 返回GIF圖片的URL
+}

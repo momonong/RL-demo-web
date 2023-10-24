@@ -3,9 +3,10 @@ import Navbar from './components/Navbar'
 // import { OperatorEnum } from './api'
 // import { Unstable_Grid2 as Grid, Container, Paper, Stack } from '@mui/material'
 // import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-// import { DDPG, COMP, Comp2Field, Home } from './components/Home'
+// import { COMP, Comp2Field, Home } from './components/Home'
 import SmartRVE from './components/SmartRVE';
 import  DDPG from './components/DDPG';
+import COMP from './components/COMP';
 
 
 function App() {
@@ -22,8 +23,9 @@ function App() {
             <Route path="/" element={<Home />} />
       </Routes>
       </Router>*/} 
-      <SmartRVE />
+      {/* <SmartRVE /> */}
       {/* <DDPG /> */}
+      <COMP />
     </>
   );
 }

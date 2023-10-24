@@ -2,6 +2,5 @@
 *.csv
 __pycache__/
 models_data/
-models/
 Test.gif
 .DS_Store

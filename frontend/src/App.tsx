@@ -20,8 +20,8 @@ function App() {
             <Route path="/comp" element={<COMP />} />
             <Route path="/comp2field" element={<Comp2Field />} />
             <Route path="/" element={<Home />} />
-          </Routes>
-      </Router> */}
+      </Routes>
+      </Router>*/} 
       <SmartRVE />
       {/* <DDPG /> */}
     </>

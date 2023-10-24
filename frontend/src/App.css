@@ -52,3 +52,16 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+/* light-theme.css */
+
+/* 浅色主题样式 */
+body.light-theme {
+  background-color: #f0f0f0; /* 浅色背景颜色 */
+  color: #333; /* 浅色文本颜色 */
+}
+
+body {
+  background-color: white;  /* 或其他你想要的淺色背景 */
+}
+

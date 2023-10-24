@@ -24,8 +24,8 @@ function App() {
       </Routes>
       </Router>*/} 
       {/* <SmartRVE /> */}
-      {/* <DDPG /> */}
-      <COMP />
+      <DDPG />
+      {/* <COMP /> */}
     </>
   );
 }

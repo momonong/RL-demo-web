@@ -1,0 +1,1 @@
+from gym_mapHR_v1.envs.mapHR_v1_Env import mapHR_v1_Env

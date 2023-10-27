@@ -68,7 +68,7 @@ return (
     <Grid item xs={12} md={6}>
     <TextField
           fullWidth
-          label="Target Porosity ( 0.3 ~ 0.7 )"
+          label="Target Ice Crystal Ratio ( 0.3 ~ 0.7 )"
           variant="outlined"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}

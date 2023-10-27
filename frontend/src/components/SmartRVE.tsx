@@ -2,7 +2,7 @@ import { useState } from "react";
 import Grid from '@mui/material/Grid';
 import CNNGridInput from "./CNNGrid";
 import CNNNumberInput from "./CNNNumber";
-import { clearPlot, postSmartRVE } from "../api";  // 請確保這是正確的導入路徑
+import { clearPlot, postSmartRVE } from "../api";  
 import Button from '@mui/material/Button';
 
 function SmartRVE() {

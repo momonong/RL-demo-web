@@ -24,3 +24,7 @@ class CNNPlasticRequest(BaseModel):
     fibre_v2: float 
     fibre_v3: float
     selected_cells: List[int] 
+
+class COMPRequest(BaseModel):
+    gamma: float
+    selected_cells: List[int]

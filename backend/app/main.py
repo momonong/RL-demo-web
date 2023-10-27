@@ -5,6 +5,7 @@ from typing import Any, Annotated, List, Optional
 from PIL import Image
 from io import BytesIO
 from enum import Enum
+from matplotlib import pyplot as plt
 import numpy as np
 import pandas as pd
 import imageio
@@ -13,6 +14,8 @@ import os
 from app.models.cnn_plastic import predict_materials, clear_plt
 from app.utils.utils import CNNPlasticRequest
 from app.models.ddpg_ice import generate_gif
+# from app.models.comp import comp_draw
+from app.utils.utils import COMPRequest
 
 app = FastAPI()
 
@@ -72,22 +75,48 @@ def clear_plot():
     clear_plt()
     return {"message": "Plot cleared successfully"}
 
-
 # COMP
 # Composites design
-@app.post('/model_composites_disgn')
-def model_composites_disgn():
-        return {"error": "File not found"}
+@app.post('/model_comp')
+def model_comp(request: COMPRequest):
+    # img_result = comp_draw()
 
+    img_result = get_test_image()
+    # read image
+    try:
+        image = Image.open(BytesIO(img_result))
+        buffer = BytesIO()
+        # save image as PNG
+        image.save(buffer, "PNG")
+        buffer.seek(0)
+        # response with image as PNG
+        return StreamingResponse(buffer, media_type="image/png")
+    except Exception as e:
+        return {"error": str(e)}
+    
+def get_test_image():
+    # 這只是一個示例，您可以根據需要生成任何圖片
+    fig, ax = plt.subplots(figsize=(6, 6))  # 創建一個6x6英寸的正方形圖片
+    x = np.linspace(0, 10, 100)
+    y = np.sin(x)
+    ax.plot(x, y)
+    
+    # 設置軸的限制以確保它們是相等的，這樣圖片就會是正方形的
+    ax.set_xlim(0, 10)
+    ax.set_ylim(-1, 1)
+    
+    buffer = BytesIO()
+    plt.savefig(buffer, format="png")
+    plt.close(fig)  # 關閉圖片以釋放資源
+    buffer.seek(0)
+    return buffer.getvalue()
+
+import time
 # HRRL
 # comp2field
-@app.post('/model_composites_disgn')
-def model_composites_disgn():
-        return {"error": "File not found"}
-
-# This is a test of picture turn into grey
-@app.post('/ai-art-portrait')
-def ai_art_portrait(file: Annotated[bytes, File()]):
+@app.post('/model_comp2field')
+def model_comp2field(file: Annotated[bytes, File()]):
+    time.sleep(3)
     image = Image.open(BytesIO(file))
     image = CycleGAN(image)
     buffer = BytesIO()

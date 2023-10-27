@@ -576,6 +576,6 @@ def generate_gif(request_target_porosity: float):
     print("SAVED GIF!!!!!!")
     cv2.destroyAllWindows()
     return gif_images
-generate_gif(0.5)
+# generate_gif(0.5)
     # Plotting graph
     # Episodes versus Avg. Rewards

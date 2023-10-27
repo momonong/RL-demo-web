@@ -5,7 +5,8 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 
-const pages = ['Smart RVE', 'DDPG', 'COMP', 'Comp2Field'];
+// const pages = ['Smart RVE', 'DDPG', 'COMP', 'Comp2Field'];
+const pages = ['Smart RVE', 'DDPG', 'COMP'];
 
 function Navbar() {
   return (

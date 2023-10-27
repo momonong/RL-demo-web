@@ -1321,6 +1321,22 @@ files = [
 ]
 
 [[package]]
+name = "mapHR-v1"
+version = "1.0.1"
+description = ""
+optional = false
+python-versions = "*"
+files = []
+develop = false
+
+[package.dependencies]
+gym = ">=0.2.3"
+
+[package.source]
+type = "directory"
+url = "app/models/comp_code/gym-mapHR_v1"
+
+[[package]]
 name = "markdown"
 version = "3.5"
 description = "Python implementation of John Gruber's Markdown."
@@ -3281,4 +3297,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "3.10.*"
-content-hash = "6c5874a477ddb97b3576fe7b176759dd14244574e4eacb634e2d22970f22a9af"
+content-hash = "327f1e9a9df09f1f46c72c7fc6c0154841968c02ad551ce40d8735a4fdd631f0"

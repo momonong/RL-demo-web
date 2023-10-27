@@ -4,18 +4,15 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Any, Annotated, List, Optional
 from PIL import Image
 from io import BytesIO
-from enum import Enum
 from matplotlib import pyplot as plt
 import numpy as np
-import pandas as pd
 import imageio
-import os
 
-from app.models.cnn_plastic import predict_materials, clear_plt
-from app.utils.utils import CNNPlasticRequest
-from app.models.ddpg_ice import generate_gif
-# from app.models.comp import comp_draw
 from app.utils.utils import COMPRequest
+from app.utils.utils import CNNPlasticRequest
+from app.models.cnn_plastic import predict_materials, clear_plt
+from app.models.ddpg_ice import generate_gif
+from app.models.code.main import comp_in
 
 app = FastAPI()
 
@@ -79,9 +76,24 @@ def clear_plot():
 # Composites design
 @app.post('/model_comp')
 def model_comp(request: COMPRequest):
-    # img_result = comp_draw()
+    cells = request.selected_cells
+    gamma = request.gamma
 
-    img_result = get_test_image()
+    # 定義映射對照表
+    index_mapping = {0: 0, 1: 1, 4: 2, 5: 3, 8: 4, 9: 5, 12: 6, 13: 7}
+
+    # 創建一個8個元素的全零陣列
+    state_0 = np.zeros(8, dtype=int)
+
+    # 對於被選中的網格，使用映射對照表進行轉換，並將其值設為1
+    for idx in cells:
+        mapped_idx = index_mapping.get(idx)
+        if mapped_idx is not None:
+            state_0[mapped_idx] = 1
+
+    img_result = comp_in(state_0, gamma)
+
+    # img_result = get_test_image()
     # read image
     try:
         image = Image.open(BytesIO(img_result))
@@ -111,12 +123,10 @@ def get_test_image():
     buffer.seek(0)
     return buffer.getvalue()
 
-import time
 # HRRL
 # comp2field
 @app.post('/model_comp2field')
 def model_comp2field(file: Annotated[bytes, File()]):
-    time.sleep(3)
     image = Image.open(BytesIO(file))
     image = CycleGAN(image)
     buffer = BytesIO()

@@ -19,6 +19,7 @@ opencv-python = "^4.8.1.78"
 imageio = "^2.31.5"
 gym = "^0.26.2"
 scikit-image = "^0.22.0"
+maphr-v1 = {path = "app/models/comp_code/gym-mapHR_v1"}
 
 
 [tool.poetry.group.dev.dependencies]

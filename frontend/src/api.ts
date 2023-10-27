@@ -1,3 +1,6 @@
+const BACKEND_URL = "https://1d84-140-116-179-122.ngrok-free.app";
+
+
 // CNN Plastic
 // Smart RVE
 export const postSmartRVE = async (selectedCells: number[], otherParameters: any) => {
@@ -7,7 +10,7 @@ export const postSmartRVE = async (selectedCells: number[], otherParameters: any
     selected_cells: selectedCells
   };
 
-  const response = await fetch(`http://127.0.0.1:8000/model_smart_rve`, {
+  const response = await fetch(`${BACKEND_URL}/model_smart_rve`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -24,7 +27,7 @@ export const postSmartRVE = async (selectedCells: number[], otherParameters: any
 }
 
 export const clearPlot = async () => {
-  const response = await fetch(`http://127.0.0.1:8000/clear_plot`, {
+  const response = await fetch(`${BACKEND_URL}/clear_plot`, {
       method: 'POST',
   });
 
@@ -43,7 +46,7 @@ export const postDDPG = async (requestRatio: number): Promise<string> => {
       request_ratio: requestRatio
   };
 
-  const response = await fetch(`http://127.0.0.1:8000/model_ddpg_ice_crystal`, {
+  const response = await fetch(`${BACKEND_URL}/model_ddpg_ice_crystal`, {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
@@ -68,7 +71,7 @@ export const postCOMP = async (requestRatio: number, gridInput: number[]): Promi
     gamma: requestRatio,
     selected_cells: gridInput
 };
-  const response = await fetch(`http://127.0.0.1:8000/model_comp`, {
+  const response = await fetch(`${BACKEND_URL}/model_comp`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -89,7 +92,7 @@ export const postCOMP = async (requestRatio: number, gridInput: number[]): Promi
 export const postComp2Field = async (file: string | Blob) => {
   const formData = new FormData()
   formData.append('file', file)
-  const response = await fetch(`http://127.0.0.1:8000/model_comp2field`, {
+  const response = await fetch(`${BACKEND_URL}/model_comp2field`, {
       method: 'POST',
       body: formData,
   })

@@ -1,9 +1,14 @@
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+import tensorflow as tf
+import tensorflow.keras as keras 
 
-from keras.applications.imagenet_utils import obtain_input_shape
 
 from tensorflow.keras import backend as K
 from tensorflow.keras import layers
-# from tensorflow.keras.callbacks import ModelCheckpoint, LearningRateScheduler, EarlyStopping, ReduceLROnPlateau
+from tensorflow.keras import models
+from tensorflow.keras.callbacks import ModelCheckpoint, LearningRateScheduler, EarlyStopping, ReduceLROnPlateau
 from tensorflow.keras.layers import Input
 from tensorflow.keras.layers import *
 from tensorflow.keras.layers import Conv2DTranspose
@@ -17,30 +22,32 @@ from tensorflow.keras.layers import ZeroPadding2D
 from tensorflow.keras.layers import MaxPooling2D
 from tensorflow.keras.layers import GlobalAveragePooling2D
 from tensorflow.keras.layers import Dense
-# from tensorflow.keras.layers import Dropout, Lambda
-from tensorflow.keras.layers import Dropout
-# from tensorflow.keras.layers import Conv2D, Conv2DTranspose,Convolution2D
-from tensorflow.keras.layers import Conv2D, Conv2DTranspose
+from tensorflow.keras.layers import Dropout, Lambda
+from tensorflow.keras.layers import Conv2D, Conv2DTranspose,Convolution2D
 from tensorflow.keras.layers import MaxPooling2D
-# from tensorflow.keras.layers import concatenate
-# from tensorflow.keras.losses import binary_crossentropy
-# from tensorflow.keras.models import Model, load_model
-from tensorflow.keras.models import Model
+from tensorflow.keras.layers import concatenate
+from tensorflow.keras.losses import binary_crossentropy
+from tensorflow.keras.models import Model, load_model
 from tensorflow.keras.utils import get_source_inputs
 
+from keras.applications.imagenet_utils import obtain_input_shape
+
+
+from matplotlib import pyplot as plt
+from PIL import Image
+
+from skimage import io
+from skimage.draw import line
+from skimage.draw import circle_perimeter
+
 from tensorflow.python.keras import regularizers
-
-from re import L
-import keras
-import gc
-import datetime
-# import cv
-import time
-import cv2
-
-import numpy as np
-import tensorflow as tf
+from tensorflow.python.keras.utils.generic_utils import Progbar
+from tensorflow.python.client import device_lib
+from tensorflow.python.keras.utils.data_utils import get_file
+from tensorflow.keras.optimizers import Adam
 import imageio
+import datetime
+
 
 def Average(lst):
     return sum(lst) / len(lst)

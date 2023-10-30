@@ -30,7 +30,7 @@ def comp(in_state, in_gamma):
     eng.cd('/home/morris/RL-demo-web/backend/app/models/code')
     eng.addpath('/home/morris/RL-demo-web/backend/app/models/code', nargout=0)
     # system size
-    size = 4
+    size = 8
     # randomly generated combinations
     # state_0 = np.random.randint(2, size=size*int(size/2)) 
     # 如果 in_state 是 list，則轉換成 numpy array
@@ -61,8 +61,8 @@ def comp(in_state, in_gamma):
     increase_times = 3    
 
     def train():
-        read_data = 0
-        read_q_table = 0
+        read_data = 1
+        read_q_table = 1
         # whether to occasionally use other combinations as the initial state
         inb = 1 
         # initialization
@@ -116,7 +116,7 @@ def comp(in_state, in_gamma):
             top_tou = [toughness_now]   
             # the property of the initial state
             toughness_0 = toughness_now     
-            env.plotmap_save(state_id_table[0],(np.round(time.time() - start_time, decimals = 2)),0,0) 
+            # env.plotmap_save(state_id_table[0],(np.round(time.time() - start_time, decimals = 2)),0,0) 
             initmap_pd = pd.DataFrame(data=state_id_table)    
             initmap_pd.to_csv(str(size)+'initmap.txt', header=None, index=None, sep=' ', mode='w')
             
@@ -193,8 +193,8 @@ def comp(in_state, in_gamma):
 
             
                     # show current status
-                    if int((it)%1) == 0:
-                        env.showmap(ep,it,(np.round(time.time() - start_time, decimals = 2))) 
+                    # if int((it)%1) == 0:
+                        # env.showmap(ep,it,(np.round(time.time() - start_time, decimals = 2))) 
                         #clear_output()
                         #print("Toughness: {} episode: {} iteration: {} time: {}" .format(np.round(toughness_2, decimals = 2),ep, it, (np.round(time.time() - start_time, decimals = 2))))
                 
@@ -235,13 +235,13 @@ def comp(in_state, in_gamma):
                     tt_pd.to_csv(str(size)+'_t_table.txt', header=None, index=None, sep=' ', mode='w')
                     ep_hl = np.arange(ep+1)+1       
                     # 不再调用 plt.show()，而是关闭图像窗口
-                    plt.figure()
-                    plt.plot(ep_hl, training_rewards)
-                    plt.xlabel('episode')
-                    plt.ylabel('reward')
-                    plt.title('episode_rewards' + str(ss + 1))
-                    plt.legend()
-                    plt.close()  # 关闭图像窗口，图像不会显示也不会保存到本地文件
+                    # plt.figure()
+                    # plt.plot(ep_hl, training_rewards)
+                    # plt.xlabel('episode')
+                    # plt.ylabel('reward')
+                    # plt.title('episode_rewards' + str(ss + 1))
+                    # plt.legend()
+                    # plt.close()  # 关闭图像窗口，图像不会显示也不会保存到本地文件
             
             # enlarge the best state
             next_initmap = state_id_table[best_num]

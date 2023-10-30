@@ -16,13 +16,13 @@ from app.models.code.main import comp_in
 
 app = FastAPI()
 
-# Set up CORS
+# 添加CORS中間件配置
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Allow this origin
+    allow_origins=["*"],  # 允許所有來源
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all methods
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["*"],  # 允許所有方法
+    allow_headers=["*"],  # 允許所有標頭
 )
 
 @app.get("/")

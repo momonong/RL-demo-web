@@ -1,4 +1,4 @@
-const BACKEND_URL = "https://1d84-140-116-179-122.ngrok-free.app";
+const BACKEND_URL = "https://99bd-140-116-179-122.ngrok-free.app";
 
 
 // CNN Plastic

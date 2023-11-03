@@ -1,5 +1,5 @@
-const BACKEND_URL = "https://99bd-140-116-179-122.ngrok-free.app";
-
+// const BACKEND_URL = "https://407b-140-116-179-122.ngrok-free.app";
+const BACKEND_URL = "http://127.0.0.1:5000";
 
 // CNN Plastic
 // Smart RVE

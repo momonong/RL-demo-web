@@ -32,7 +32,7 @@ function COMP() {
   };
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '20px', marginTop: '10px' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 2fr', gap: '20px', marginTop: '10px' }}>
       {/* 輸入介面 */}
       <div style={{ height: '500px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
         <COMPGrid onSelectedCellsChange={handleSelectedCellsChange} />

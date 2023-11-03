@@ -79,22 +79,19 @@ def model_comp(request: COMPRequest):
     cells = request.selected_cells
     gamma = request.gamma
 
-    # 定義映射對照表
-    index_mapping = {0: 0, 1: 1, 4: 2, 5: 3, 8: 4, 9: 5, 12: 6, 13: 7}
+    # 創建一个4x8的全零矩陣
+    state_matrix = np.zeros((4, 8), dtype=int)
 
-    # 創建一個8個元素的全零陣列
-    state_0 = np.zeros(8, dtype=int)
-
-    # 對於被選中的網格，使用映射對照表進行轉換，並將其值設為1
+    # 前端已经發送了4x8格式的索引，直接在矩陣中設置對應的單元格為1
     for idx in cells:
-        mapped_idx = index_mapping.get(idx)
-        if mapped_idx is not None:
-            state_0[mapped_idx] = 1
+        row = idx // 8  
+        col = idx % 8   
+        state_matrix[row, col] = 1  # 將對應位置設置為1
 
-    img_result = comp_in(state_0, gamma)
+    # 假設comp_in函數接受一个4x8矩陣和gamma值，然後返回處理後的圖像
+    # img_result = comp_in(state_matrix, gamma)
+    img_result = get_test_image()
 
-    # img_result = get_test_image()
-    # read image
     try:
         image = Image.open(BytesIO(img_result))
         buffer = BytesIO()

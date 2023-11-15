@@ -32,21 +32,25 @@ function COMP() {
   };
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 2fr', gap: '20px', marginTop: '10px' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 2fr', gap: '20px', marginTop: '10px' }}>
       {/* 輸入介面 */}
       <div style={{ height: '500px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
         <COMPGrid onSelectedCellsChange={handleSelectedCellsChange} />
-        <COMPFloat label="Gamma" onValueChange={handleFloatValueChange} />
-        <Button 
-          variant="contained" 
-          color="primary" 
-          onClick={handleSubmit}
-          size="large" 
-          style={{ width: '100%' }}  
-          disabled={isLoading}  // 當正在加載時禁用按鈕
-        >
-          {isLoading ? <CircularProgress size={24} /> : 'Submit'}  
-        </Button>
+        <div style={{ marginTop: '15px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}> {/* 增加了顶部边距 */}
+          <COMPFloat label="Gamma" onValueChange={handleFloatValueChange} />
+        </div>
+        <div style={{ marginTop: '15px' }}> {/* 再次增加了顶部边距 */}
+          <Button 
+            variant="contained" 
+            color="primary" 
+            onClick={handleSubmit}
+            size="large" 
+            style={{ width: '100%' }}  
+            disabled={isLoading}  // 當正在加載時禁用按鈕
+          >
+            {isLoading ? <CircularProgress size={24} /> : 'Submit'}  
+          </Button>
+        </div>
       </div>
   
       {/* 圖片或佔位方塊 */}

@@ -76,32 +76,33 @@ def clear_plot():
 # Composites design
 @app.post('/model_comp')
 def model_comp(request: COMPRequest):
-    cells = request.selected_cells
-    gamma = request.gamma
+    pass
+#     cells = request.selected_cells
+#     gamma = request.gamma
 
-    # 創建一个4x8的全零矩陣
-    state_matrix = np.zeros((4, 8), dtype=int)
+#     # 創建一个4x8的全零矩陣
+#     state_matrix = np.zeros((4, 8), dtype=int)
 
-    # 前端已经發送了4x8格式的索引，直接在矩陣中設置對應的單元格為1
-    for idx in cells:
-        row = idx // 8  
-        col = idx % 8   
-        state_matrix[row, col] = 1  # 將對應位置設置為1
+#     # 前端已经發送了4x8格式的索引，直接在矩陣中設置對應的單元格為1
+#     for idx in cells:
+#         row = idx // 8  
+#         col = idx % 8   
+#         state_matrix[row, col] = 1  # 將對應位置設置為1
 
-    # 假設comp_in函數接受一个4x8矩陣和gamma值，然後返回處理後的圖像
-    # img_result = comp_in(state_matrix, gamma)
-    img_result = get_test_image()
+#     # 假設comp_in函數接受一个4x8矩陣和gamma值，然後返回處理後的圖像
+#     # img_result = comp_in(state_matrix, gamma)
+#     img_result = get_test_image()
 
-    try:
-        image = Image.open(BytesIO(img_result))
-        buffer = BytesIO()
-        # save image as PNG
-        image.save(buffer, "PNG")
-        buffer.seek(0)
-        # response with image as PNG
-        return StreamingResponse(buffer, media_type="image/png")
-    except Exception as e:
-        return {"error": str(e)}
+#     try:
+#         image = Image.open(BytesIO(img_result))
+#         buffer = BytesIO()
+#         # save image as PNG
+#         image.save(buffer, "PNG")
+#         buffer.seek(0)
+#         # response with image as PNG
+#         return StreamingResponse(buffer, media_type="image/png")
+#     except Exception as e:
+#         return {"error": str(e)}
     
 def get_test_image():
     # 這只是一個示例，您可以根據需要生成任何圖片
@@ -124,15 +125,14 @@ def get_test_image():
 # comp2field
 @app.post('/model_comp2field')
 def model_comp2field(file: Annotated[bytes, File()]):
-    pass
-#     image = Image.open(BytesIO(file))
-#     image = CycleGAN(image)
-#     buffer = BytesIO()
-#     image.save(buffer, 'jpeg')
-#     buffer.seek(0)
-#     return StreamingResponse(buffer, media_type='image/jpeg')
+    image = Image.open(BytesIO(file))
+    image = CycleGAN(image)
+    buffer = BytesIO()
+    image.save(buffer, 'jpeg')
+    buffer.seek(0)
+    return StreamingResponse(buffer, media_type='image/jpeg')
 
-# def CycleGAN(image: Image):
-#     image = image.convert('RGB')
-#     image = image.convert('L')
-#     return image
+def CycleGAN(image: Image):
+    image = image.convert('RGB')
+    image = image.convert('L')
+    return image

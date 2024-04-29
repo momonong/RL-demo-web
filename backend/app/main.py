@@ -124,14 +124,15 @@ def get_test_image():
 # comp2field
 @app.post('/model_comp2field')
 def model_comp2field(file: Annotated[bytes, File()]):
-    image = Image.open(BytesIO(file))
-    image = CycleGAN(image)
-    buffer = BytesIO()
-    image.save(buffer, 'jpeg')
-    buffer.seek(0)
-    return StreamingResponse(buffer, media_type='image/jpeg')
+    pass
+#     image = Image.open(BytesIO(file))
+#     image = CycleGAN(image)
+#     buffer = BytesIO()
+#     image.save(buffer, 'jpeg')
+#     buffer.seek(0)
+#     return StreamingResponse(buffer, media_type='image/jpeg')
 
-def CycleGAN(image: Image):
-    image = image.convert('RGB')
-    image = image.convert('L')
-    return image
+# def CycleGAN(image: Image):
+#     image = image.convert('RGB')
+#     image = image.convert('L')
+#     return image
